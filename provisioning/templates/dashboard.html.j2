@@ -111,19 +111,15 @@
 
     {%- macro sectionDevelopmentTools() -%}
       <table class="table">
-        {% if 'adminer' in installed_extras -%}
-          {% macro servername() %}{{ getServernameFromDocroot(adminer_install_dir) }}/{{ adminer_install_filename }}{% endmacro %}
-          {%- if servername() != "/{{ adminer_install_filename }}" -%}
-            <tr>
-              <th>Adminer</th>
-              <td><a href="http://{{ servername() }}">{{ servername() }}</a></td>
-              <td class="text-right">
-                <a href="http://{{ servername() }}" class="btn btn-success btn-xs" role="button">Open</a>
-                <a href="http://docs.drupalvm.com/en/latest/extras/mysql/#connect-using-adminer" target="_blank" class="btn btn-info btn-xs" role="button">Documentation</a>
-              </td>
-            </tr>
-          {%- endif -%}
-        {%- endif %}
+        <tr>
+          {% macro servername() %}phpmyadmin.{{ vagrant_hostname }}{% endmacro %}
+          <th>Phpmyadmin</th>
+          <td><a href="http://{{ servername() }}">{{ servername() }}</a></td>
+          <td class="text-right">
+            <a href="http://{{ servername() }}" class="btn btn-success btn-xs" role="button">Open</a>
+            <a href="https://www.phpmyadmin.net" target="_blank" class="btn btn-info btn-xs" role="button">Documentation</a>
+          </td>
+        </tr>
         {% if 'mailhog' in installed_extras -%}
           {% macro servername() %}{{ vagrant_hostname }}:8025{% endmacro %}
           {%- if servername() != ":8025" -%}
